@@ -50,13 +50,16 @@ python train.py
 ### Option 2: Using Real Datasets (Recommended)
 
 1. **Download Datasets**:
-   - LIAR: https://www.cs.ucsb.edu/~william/data/liar_dataset.zip
-   - Kaggle Fake News: https://www.kaggle.com/c/fake-news/data
+   - **WELFake** (Recommended): https://www.kaggle.com/datasets/saurabhshahane/fake-news-classification
+   - **ISOT Fake News**: https://www.kaggle.com/datasets/clmentbisaillon/fake-and-real-news-dataset
+   - **LIAR**: https://github.com/thiagorainmaker77/liar_dataset
 
 2. **Place in correct location**:
    ```
-   ml/data/raw/liar_dataset.tsv
-   ml/data/raw/kaggle_fake_news.csv
+   ml/data/raw/WELFake_Dataset.csv          # Recommended
+   ml/data/raw/Fake.csv                      # ISOT dataset
+   ml/data/raw/True.csv                      # ISOT dataset
+   ml/data/raw/liar_dataset.tsv              # LIAR dataset
    ```
 
 3. **Process and train**:

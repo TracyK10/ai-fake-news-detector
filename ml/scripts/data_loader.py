@@ -106,6 +106,10 @@ class DataLoader:
         Load Kaggle Fake News dataset
         Expected columns: 'text' and 'label' where label is 0 (real) or 1 (fake)
         
+        Recommended datasets:
+        - WELFake: https://www.kaggle.com/datasets/saurabhshahane/fake-news-classification
+        - ISOT Fake News: https://www.kaggle.com/datasets/clmentbisaillon/fake-and-real-news-dataset
+        
         Args:
             file_path: Optional custom path to the dataset
             
@@ -117,7 +121,9 @@ class DataLoader:
         
         if not os.path.exists(file_path):
             logger.warning(f"File not found: {file_path}")
-            logger.info("Please download from: https://www.kaggle.com/c/fake-news/data")
+            logger.info("Download a dataset from:")
+            logger.info("  - WELFake: https://www.kaggle.com/datasets/saurabhshahane/fake-news-classification")
+            logger.info("  - ISOT: https://www.kaggle.com/datasets/clmentbisaillon/fake-and-real-news-dataset")
             return pd.DataFrame()
         
         df = self.load_csv(file_path, text_col='text', label_col='label')
@@ -143,7 +149,8 @@ class DataLoader:
         
         if not os.path.exists(file_path):
             logger.warning(f"File not found: {file_path}")
-            logger.info("Please download from: https://www.cs.ucsb.edu/~william/data/liar_dataset.zip")
+            logger.info("Download from: https://github.com/thiagorainmaker77/liar_dataset")
+            logger.info("Or use enhanced version: https://github.com/Tariq60/LIAR-PLUS")
             return pd.DataFrame()
         
         try:
