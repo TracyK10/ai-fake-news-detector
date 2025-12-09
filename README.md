@@ -1,3 +1,17 @@
+# 🔍 AI Fake News Detector
+
+![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![React](https://img.shields.io/badge/React-18.2-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-009688?style=for-the-badge&logo=fastapi&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-Enabled-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+[![Build](https://img.shields.io/badge/Build-Passing-success?style=for-the-badge)](https://github.com/TracyK10/ai-fake-news-detector/actions)
+
+> A production-grade full-stack application for detecting misinformation using fine-tuned Transformer models (BERT/RoBERTa). Features a real-time feedback loop where user corrections continuously improve model accuracy.
+
+---
+
+## 📊 Project Overview
+
 This application leverages **state-of-the-art NLP** to analyze news articles and classify them as authentic or fabricated. Built end-to-end with modern software engineering practices, it demonstrates competency across machine learning, backend API development, frontend UI/UX, and DevOps.
 
 **Key Features:**
