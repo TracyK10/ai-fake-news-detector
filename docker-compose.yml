@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  # Backend API
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: fakenews-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./ml/models:/app/ml/models
+      - ./ml/data:/app/ml/data
+      - ./feedback.db:/app/feedback.db
+    environment:
+      - DATABASE_URL=sqlite:///./feedback.db
+      - API_HOST=0.0.0.0
+      - API_PORT=8000
+      - FRONTEND_URL=http://localhost:3000
+    networks:
+      - fakenews-network
+    restart: unless-stopped
+
+  # Frontend (to be added)
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: fakenews-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_API_URL=http://localhost:8000
+    depends_on:
+      - backend
+    networks:
+      - fakenews-network
+    restart: unless-stopped
+
+networks:
+  fakenews-network:
+    driver: bridge
+
+volumes:
+  model-data:
+  db-data:
