@@ -99,11 +99,11 @@ const AnalysisForm = () => {
               disabled={loading}
             />
             <div className="flex justify-between items-center mt-2">
-              <span className="text-sm text-gray-500">
+              <span className="text-sm text-gray-700 font-medium">
                 {text.length} characters
               </span>
               {error && (
-                <span className="text-sm text-red-600 font-semibold">
+                <span className="text-sm text-red-600 font-semibold bg-red-50 px-2 py-1 rounded">
                   {error}
                 </span>
               )}

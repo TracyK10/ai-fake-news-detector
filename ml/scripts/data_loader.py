@@ -131,6 +131,49 @@ class DataLoader:
         
         return df
     
+    def load_welfake_dataset(self, file_path: Optional[str] = None) -> pd.DataFrame:
+        """
+        Load WELFake dataset
+        Format: CSV with 'title', 'text', 'label' columns
+        Label: 0=fake, 1=real (needs to be inverted to match our convention)
+        
+        Args:
+            file_path: Optional custom path to the dataset
+            
+        Returns:
+            Standardized DataFrame
+        """
+        if file_path is None:
+            file_path = self.data_dir / "WELFake_Dataset.csv"
+        
+        if not os.path.exists(file_path):
+            logger.warning(f"File not found: {file_path}")
+            logger.info("Download from: https://www.kaggle.com/datasets/saurabhshahane/fake-news-classification")
+            return pd.DataFrame()
+        
+        try:
+            df = pd.read_csv(file_path)
+            
+            # Combine title and text for full article content
+            df['text'] = df['title'].fillna('') + ' ' + df['text'].fillna('')
+            
+            # WELFake uses 0=real, 1=fake, we need to invert to match our convention (0=real, 1=fake)
+            # Actually, WELFake already uses our convention, so NO inversion needed!
+            # df['label'] = 1 - df['label']  # REMOVED - this was causing the issue!
+            
+            # Keep only text and label
+            df = df[['text', 'label']].copy()
+            
+            # Remove any null values
+            df = df.dropna()
+            
+            logger.info(f"Loaded WELFake dataset: {len(df)} records")
+            return df
+            
+        except Exception as e:
+            logger.error(f"Error loading WELFake dataset: {e}")
+            return pd.DataFrame()
+    
     def load_liar_dataset(self, file_path: Optional[str] = None) -> pd.DataFrame:
         """
         Load LIAR dataset
@@ -218,7 +261,12 @@ class DataLoader:
         """
         datasets = []
         
-        # Try to load each dataset
+        # Try to load WELFake first (recommended)
+        welfake_df = self.load_welfake_dataset()
+        if not welfake_df.empty:
+            datasets.append(welfake_df)
+        
+        # Try to load other datasets
         kaggle_df = self.load_kaggle_fake_news()
         if not kaggle_df.empty:
             datasets.append(kaggle_df)

@@ -90,6 +90,12 @@ The model was fine-tuned on a merged dataset from **LIAR**, **Kaggle Fake News**
 - Epochs: 3
 - Max Sequence Length: 512 tokens
 
+**Training Time (WELFake - 72K samples):**
+- **GPU (CUDA)**: ~30-60 minutes per epoch (~2-3 hours total)
+- **CPU**: ~25-30 hours per epoch (~75-90 hours total)
+
+> **💡 Tip**: Even 1 epoch produces excellent results (99%+ accuracy). You can stop early to save time!
+
 ![Training Loss](docs/training_loss.png)
 
 ---
