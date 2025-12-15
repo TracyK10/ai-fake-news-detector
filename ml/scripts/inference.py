@@ -90,16 +90,18 @@ class FakeNewsClassifier:
         predicted_class = torch.argmax(probabilities, dim=1).item()
         confidence = probabilities[0][predicted_class].item()
         
-        # Map to labels (Model trained with: 0=Real, 1=Fake after WELFake inversion)
-        label_map = {0: "Real", 1: "Fake"}
+        # CRITICAL: Model was trained with INVERTED labels due to data_loader bug
+        # Training used: 0=Fake, 1=Real (backwards!)
+        # So we must INVERT the output to show correct labels to users
+        label_map = {0: "Fake", 1: "Real"}
         label = label_map[predicted_class]
         
         result = {
             'label': label,
             'confidence_score': float(confidence),
             'probabilities': {
-                'real': float(probabilities[0][0]),  # Class 0 = Real
-                'fake': float(probabilities[0][1])   # Class 1 = Fake
+                'real': float(probabilities[0][1]),  # Class 1 = Real (in training)
+                'fake': float(probabilities[0][0])   # Class 0 = Fake (in training)
             }
         }
         

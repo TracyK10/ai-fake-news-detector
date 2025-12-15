@@ -11,7 +11,7 @@
 body {
   margin: 0;
   padding: 0;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #aac0aa 0%, #f4b886 50%, #fcdfa6 100%);
   min-height: 100vh;
 }
 
@@ -21,11 +21,11 @@ body {
   }
   
   .btn-primary {
-    @apply px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200;
+    @apply px-6 py-3 bg-gradient-to-r from-lime-200 via-amber-200 to-orange-300 text-gray-800 font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 border-2 border-orange-400;
   }
   
   .btn-secondary {
-    @apply px-6 py-3 bg-white/20 backdrop-blur-sm text-white font-semibold rounded-lg border border-white/30 hover:bg-white/30 transition-all duration-200;
+    @apply px-6 py-3 bg-white/20 backdrop-blur-sm text-gray-800 font-semibold rounded-lg border border-white/30 hover:bg-white/30 transition-all duration-200;
   }
   
   .card {
